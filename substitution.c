@@ -32,8 +32,11 @@ int main(int argc, string argv[])
     char *input_text = get_string("\n Enter the Text to Cipher: ");
     for (int i=0; i < strlen(input_text); i++)
     {
-        while(!isalpha(input_text[i]))
+        while(((!isalpha(input_text[i])) && (!isspace(input_text[i])) && 
+        (!ispunct(input_text[i]))))
+        
         {
+            printf("Broken Character: %c", input_text[i]);
             input_text = get_string("\n Only Alphabets allowed, Please Enter the Correct Text to Cipher: ");
         }
     }
@@ -89,7 +92,7 @@ void encipher_text(char *KEY, char *text)
     printf("\n Cipher Text: ");
     for (int i = 0; i < text_len; i++)
     {
-        if (text[i] == 32)
+        if ((isspace(text[i]) || (ispunct(text[i]))))
         {
             printf("%c", text[i]);
         }
